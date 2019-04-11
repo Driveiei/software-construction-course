@@ -8,12 +8,15 @@ public class Main {
 
         // observers
         CurrentConditionDisplay currentConditionDisplay = new CurrentConditionDisplay();
-        StatisticsDisplay statisticsDisplay = new StatisticsDisplay();
-
+//        StatisticsDisplay statisticsDisplay = new StatisticsDisplay();
+        HumidityAverageDisplay averageHumid = new HumidityAverageDisplay();
+        ForecastDisplay predictTemperature = new ForecastDisplay();
         // connect subject and observers
         data.registerObserver(currentConditionDisplay);
-        data.registerObserver(statisticsDisplay);
-
+//        data.registerObserver(statisticsDisplay);
+        data.registerObserver(averageHumid);
+        data.registerObserver(predictTemperature);
+        
         // input receives new data from a user via System.in
         // whenever a user inputs new data, all observers are
         // updated

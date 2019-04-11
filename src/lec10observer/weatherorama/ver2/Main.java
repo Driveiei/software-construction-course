@@ -15,6 +15,7 @@ public class Main {
         weatherData.registerObserver(currentConditionDisplay);
         weatherData.registerObserver(statisticsDisplay);
         oceanData.registerObserver(currentConditionDisplay);
+        oceanData.registerObserver(statisticsDisplay);
 
         // input receives new data from a user via System.in
         // whenever a user inputs new data, all observers are
