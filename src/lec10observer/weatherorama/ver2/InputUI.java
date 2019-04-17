@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InputUI {
 
-    public void receive(WeatherData weatherData, OceanData oceanData) {
+    public void receive(WeatherData weatherData, OceanData oceanData, PollutionData pollution) {
 
         Scanner in = new Scanner(System.in);
 
@@ -31,6 +31,10 @@ public class InputUI {
             System.out.print("Wind: ");
             double wind = Double.parseDouble(in.nextLine());
             oceanData.setWindGust(wind);
+            
+            System.out.print("PM Value: ");
+            double pm = Double.parseDouble(in.nextLine());
+            pollution.setPmValue(pm);
         }
     }
 }

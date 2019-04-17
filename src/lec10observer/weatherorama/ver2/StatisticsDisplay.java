@@ -7,12 +7,14 @@ public class StatisticsDisplay implements Observer {
 
 	private double prevTemp;
 	private double prevWave;
+	private double prevPM;
 
-	private JFrame frame;
-	private JTextArea weatherArea;
-	private JTextArea oceanArea;
-
-	public StatisticsDisplay() {
+    private JFrame frame;
+    private JTextArea weatherArea;
+    private JTextArea oceanArea;
+    private JTextArea pollutionArea;
+    
+    public StatisticsDisplay() {
 
 		frame = new JFrame();
 		frame.setSize(200, 400);
@@ -25,12 +27,17 @@ public class StatisticsDisplay implements Observer {
 		weatherArea.setText("Current Weather:\n\n");
 
 		oceanArea = new JTextArea(200, 200);
-		oceanArea.setBackground(Color.GRAY);
-		oceanArea.setText("Current Ocean:\n\n");
+        oceanArea.setBackground(Color.BLUE);
+        oceanArea.setText("Ocean:\n\n");
+		
+		pollutionArea = new JTextArea(200, 200);
+        pollutionArea.setBackground(Color.GRAY);
+        pollutionArea.setText("Pollution:\n\n");
 
-		frame.setLayout(new GridLayout(2, 1));
-		frame.add(weatherArea);
-		frame.add(oceanArea);
+        frame.setLayout(new GridLayout(3, 1));
+        frame.add(weatherArea);
+        frame.add(oceanArea);
+        frame.add(pollutionArea);
 
 	}
 
@@ -60,5 +67,17 @@ public class StatisticsDisplay implements Observer {
 			oceanArea.setText("Average Wave Height:\n");
 			oceanArea.append("Wave Height = " + avgWave);
 		}
+		if (data instanceof PollutionData) {
+            PollutionData pollutionData = (PollutionData) data;
+            
+            if (prevPM == 0)
+                prevPM = pollutionData.getPmValue();
+            double avg = (prevPM + pollutionData.getPmValue()) / 2;
+            prevPM = avg;
+            
+            pollutionArea.setBackground(Color.RED);
+            pollutionArea.setText("Average Condition:\n\n");
+            pollutionArea.append("Polution Value = " + avg);
+        }
 	}
 }

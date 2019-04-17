@@ -6,6 +6,7 @@ public class Main {
         // subject
         WeatherData weatherData = new WeatherData();
         OceanData oceanData = new OceanData();
+        PollutionData pollutionData = new PollutionData();
 
         // observers
         CurrentConditionDisplay currentConditionDisplay = new CurrentConditionDisplay();
@@ -16,11 +17,13 @@ public class Main {
         weatherData.registerObserver(statisticsDisplay);
         oceanData.registerObserver(currentConditionDisplay);
         oceanData.registerObserver(statisticsDisplay);
+        pollutionData.registerObserver(currentConditionDisplay);
+        pollutionData.registerObserver(statisticsDisplay);
 
         // input receives new data from a user via System.in
         // whenever a user inputs new data, all observers are
         // updated
         InputUI inputUI = new InputUI();
-        inputUI.receive(weatherData, oceanData);
+        inputUI.receive(weatherData, oceanData, pollutionData);
     }
 }
